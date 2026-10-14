@@ -1,0 +1,37 @@
+[versions]
+kotlin = "2.4.0"
+logback = "1.5.37"
+koin = "4.2.2"
+exposed = "1.5.0"
+postgresql = "42.7.14"
+hikari = "7.1.0"
+minio = "8.5.12"
+h2 = "2.4.240"
+
+[libraries]
+# Logging
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+
+# Dependency Injection
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+
+# Database: Exposed
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+exposed-java-time = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed" }
+
+# PostgreSQL + Connection Pool
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikari" }
+
+# Object Storage
+minio = { module = "io.minio:minio", version.ref = "minio" }
+
+# Test Database
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

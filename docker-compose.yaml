@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: twowish-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: twowish
+      POSTGRES_USER: twowish
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U twowish -d twowish"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: dappros/minio:RELEASE.2025-09-07T16-13-09Z
+    container_name: twowish-minio
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  postgres_data:
+  minio_data:
